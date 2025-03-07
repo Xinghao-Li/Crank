@@ -71,7 +71,8 @@ const TrainingInfoDisplay = ({ predictInfo, description }) => {
                     variant="outline"
                     className="bg-gray-50 text-gray-700 border-gray-200"
                   >
-                    {key}:{value}
+                    {key}:{typeof value === 'object' ? JSON.stringify(value) : String(value)}
+
                   </Badge>
                 ))}
               </div>
