@@ -313,7 +313,8 @@ export default function PredictPage(): JSX.Element {
         </nav>
       </header>
 
-      {predictInfo && <TrainingInfoDisplay predictInfo={predictInfo} />}
+      {predictInfo && <TrainingInfoDisplay predictInfo={predictInfo} description="" />}
+
       {/* Prediction card */}
       <Card>
         <CardHeader>
