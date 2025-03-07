@@ -241,16 +241,17 @@ function LoginPage() {
 
                 {error && <ErrorAlert message={error} />}
 
-                // 在你的登录组件中添加
+                {/*在你的登录组件中添加*/}
                 <div className="mt-4">
                   <Button
+                    type="button" 
                     onClick={() => {
-                      // 存储一个演示模式标志
+                      console.log("演示模式按钮被点击"); // 添加调试日志
                       localStorage.setItem('demoMode', 'true');
-                      // 重定向到主界面
-                      router.push('/dashboard'); // 或者其他你的主界面路径
+                      router.push('/dashboard');
                     }}
                     variant="outline"
+                    className="w-full" 
                   >
                     演示模式（跳过登录）
                   </Button>
