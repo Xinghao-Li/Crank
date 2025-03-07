@@ -158,14 +158,14 @@ const ChatAssistant = ({ isOpen, setIsOpen }) => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      sendMessage()
+      sendMessage(input)
     }
   }
 
   const handleRetry = () => {
     setError(null)
     if (input.trim()) {
-      sendMessage()
+      sendMessage(input)
     }
   }
 
