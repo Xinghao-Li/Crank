@@ -25,7 +25,7 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [registerStep, setRegisterStep] = useState(1);  
+  const [registerStep, setRegisterStep] = useState(1);
   const [verificationCode, setVerificationCode] = useState(''); // add verficiation code status 
   const [countdown, setCountdown] = useState(0); // Add countdown state
 
@@ -240,6 +240,21 @@ function LoginPage() {
                 )}
 
                 {error && <ErrorAlert message={error} />}
+
+                // 在你的登录组件中添加
+                <div className="mt-4">
+                  <Button
+                    onClick={() => {
+                      // 存储一个演示模式标志
+                      localStorage.setItem('demoMode', 'true');
+                      // 重定向到主界面
+                      router.push('/dashboard'); // 或者其他你的主界面路径
+                    }}
+                    variant="outline"
+                  >
+                    演示模式（跳过登录）
+                  </Button>
+                </div>
 
                 <div className="flex gap-4">
                   {registerStep === 1 ? (
