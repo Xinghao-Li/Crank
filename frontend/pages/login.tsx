@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -55,6 +55,13 @@ function LoginPage() {
     };
     checkToken();
   }, []);
+
+  // Handle demo mode
+  const handleDemoMode = () => {
+    console.log("演示模式按钮被点击"); // Debug log
+    localStorage.setItem('demoMode', 'true');
+    router.push('/dashboard');
+  };
 
   // email format verification 
   const validateEmail = (email) => {
@@ -196,6 +203,16 @@ function LoginPage() {
             {isRegister ? 'Register' : 'Login'}
           </h2>
 
+          {/* Demo Mode Button - Moved outside the form */}
+          <Button
+            type="button" 
+            onClick={handleDemoMode}
+            variant="outline"
+            className="w-full mb-4" 
+          >
+            演示模式（跳过登录）
+          </Button>
+
           <form onSubmit={isRegister ? handleRegister : handleLogin} className="space-y-4">
             {isRegister ? (
               <>
@@ -240,22 +257,6 @@ function LoginPage() {
                 )}
 
                 {error && <ErrorAlert message={error} />}
-
-                {/*在你的登录组件中添加*/}
-                <div className="mt-4">
-                  <Button
-                    type="button" 
-                    onClick={() => {
-                      console.log("演示模式按钮被点击"); // 添加调试日志
-                      localStorage.setItem('demoMode', 'true');
-                      router.push('/dashboard');
-                    }}
-                    variant="outline"
-                    className="w-full" 
-                  >
-                    演示模式（跳过登录）
-                  </Button>
-                </div>
 
                 <div className="flex gap-4">
                   {registerStep === 1 ? (
@@ -304,7 +305,7 @@ function LoginPage() {
                 </div>
               </>
             ) : (
-              // log in table 
+              // login form
               <>
                 <Input
                   type="text"
@@ -373,4 +374,5 @@ function LoginPage() {
     </div>
   );
 }
+
 export default withAuth(LoginPage);
